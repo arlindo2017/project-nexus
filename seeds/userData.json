@@ -1,0 +1,88 @@
+
+[
+  {
+    "name": "Rita",
+    "email": "rita@example.com",
+    "password": "password12345"
+  },
+  {
+    "name": "John",
+    "email": "john@example.com",
+    "password": "password12345"
+  },
+  {
+    "name": "Rachel",
+    "email": "rachel@example.com",
+    "password": "password12345"
+  },
+  {
+    "name": "Aiden",
+    "email": "aiden@example.com",
+    "password": "password12345"
+  },
+  {
+    "name": "Liam",
+    "email": "liam@example.com",
+    "password": "password12345"
+  },
+  {
+    "name": "Sophia",
+    "email": "sophia@example.com",
+    "password": "password12345"
+  },
+  {
+    "name": "Emma",
+    "email": "emma@example.com",
+    "password": "password12345"
+  },
+  {
+    "name": "Noah",
+    "email": "noah@example.com",
+    "password": "password12345"
+  },
+  {
+    "name": "Ethan",
+    "email": "ethan@example.com",
+    "password": "password12345"
+  },
+  {
+    "name": "Olivia",
+    "email": "olivia@example.com",
+    "password": "password12345"
+  },
+  {
+    "name": "Ava",
+    "email": "ava@example.com",
+    "password": "password12345"
+  },
+  {
+    "name": "Mason",
+    "email": "mason@example.com",
+    "password": "password12345"
+  },
+  {
+    "name": "Lucas",
+    "email": "lucas@example.com",
+    "password": "password12345"
+  },
+  {
+    "name": "Logan",
+    "email": "logan@example.com",
+    "password": "password12345"
+  },
+  {
+    "name": "Leah",
+    "email": "leah@example.com",
+    "password": "password12345"
+  },
+  {
+    "name": "Emily",
+    "email": "emily@example.com",
+    "password": "password12345"
+  },
+  {
+    "name": "Madison",
+    "email": "madison@example.com",
+    "password": "password12345"
+  }
+]

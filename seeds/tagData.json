@@ -1,0 +1,53 @@
+[
+    {
+        "tag_name": "Java"
+    },
+    {
+        "tag_name": "JavaScript"
+    },
+    {
+        "tag_name": "Python"
+    },
+    {
+        "tag_name": "C#"
+    },
+    {
+        "tag_name": "C++"
+    },
+    {
+        "tag_name": "Ruby"
+    },
+    {
+        "tag_name": "PHP"
+    },
+    {
+        "tag_name": "Swift"
+    },
+    {
+        "tag_name": "Kotlin"
+    },
+    {
+        "tag_name": "Objective-C"
+    },
+    {
+        "tag_name": "Perl"
+    },
+    {
+        "tag_name": "Rust"
+    },
+    {
+        "tag_name": "Go"
+    },
+    {
+        "tag_name": "Scala"
+    },
+    {
+        "tag_name": "Haskell"
+    },
+    {
+        "tag_name": "Lua"
+    },
+    {
+        "tag_name": "TypeScript"
+    }
+]
