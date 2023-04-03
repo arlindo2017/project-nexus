@@ -1,3 +1,5 @@
+// needs to be finished
+
 const sequelize = require('../config/connection');
 const { User, Project } = require('../models');
 
