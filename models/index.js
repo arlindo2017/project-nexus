@@ -1,4 +1,7 @@
-const { User, Post, Answer, Tag } = require('./models');
+const User = require('../models/User.js');
+const Post = require('../models/Post.js');
+const Answer = require('../models/Answer.js');
+const Tag = require('../models/Tag.js');
 
 
 User.hasMany(Post, {
@@ -30,10 +33,10 @@ Answer.belongsTo(Post, {
   foreignKey: 'post_id',
 });
 
-Post.hasOne(Tag, {
-  foreignKey: 'post_id',
-  onDelete: 'CASCADE'
-});
+// Post.hasOne(Tag, {
+//   foreignKey: 'post_id',
+//   onDelete: 'CASCADE'
+// });
 
 Tag.belongsTo(Post, {
   foreignKey: 'tag_id',

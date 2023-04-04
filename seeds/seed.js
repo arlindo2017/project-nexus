@@ -1,10 +1,10 @@
-// needs to be finished
-
 const sequelize = require('../config/connection');
-const { User, Project } = require('../models');
+const { User, Post, Answer, Tag } = require('../models')
 
 const userData = require('./userData.json');
-const projectData = require('./projectData.json');
+const postData = require('./postData.json');
+const answerData = require('./answerData.json');
+const tagData = require('./tagData.json');
 
 const seedDatabase = async () => {
   await sequelize.sync({ force: true });
@@ -14,12 +14,17 @@ const seedDatabase = async () => {
     returning: true,
   });
 
-  for (const project of projectData) {
-    await Project.create({
-      ...project,
-      user_id: users[Math.floor(Math.random() * users.length)].id,
-    });
-  }
+  const tags = await Tag.bulkCreate(tagData, {
+     returning: true,
+   });
+  
+   const posts = await Post.bulkCreate(postData, {
+    returning: true,
+  });
+
+  const answers = await Answer.bulkCreate(answerData, {
+     returning: true,
+   });
 
   process.exit(0);
 };
