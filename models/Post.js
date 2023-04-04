@@ -1,39 +1,57 @@
-// this needs to be changed to reflect Post data
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
 
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
+class Post extends Model {}
 
-class Project extends Model {}
-
-Project.init(
+Post.init(
   {
-    id: {
+    post_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
+    post_title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    description: {
+    post_body: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     date_created: {
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    needed_funding: {
-      type: DataTypes.FLOAT,
-      allowNull: false,
+    view_count: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0,
+    },
+    answer_count: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0,
+    },
+    flag_count: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      defaultValue: 0,
+    },
+    tag_id: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: "tag",
+        key: "tag_id",
+      },
     },
     user_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'user',
-        key: 'id',
+        model: "user",
+        key: "user_id",
       },
     },
   },
@@ -42,8 +60,8 @@ Project.init(
     timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'project',
+    modelName: "post",
   }
 );
 
-module.exports = Project;
+module.exports = Post;
