@@ -40,4 +40,4 @@ Tag.belongsTo(Post, {
   onDelete: 'SET NULL'
 });
 
-module.exports = { User, Project };
+module.exports = { User, Post, Answer, Tag };
