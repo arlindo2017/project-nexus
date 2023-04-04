@@ -1,8 +1,8 @@
-const router = require('express').Router();
-const { Answer } = require('../../models');
-const withAuth = require('../../utils/auth');
-
-router.post('/', async (req, res) => {
+const router = require("express").Router();
+const { Answer } = require("../../models");
+const withAuth = require("../../utils/auth");
+//withAuth
+router.post("/", async (req, res) => {
   try {
     const newProject = await Answer.create({
       ...req.body,
@@ -14,8 +14,8 @@ router.post('/', async (req, res) => {
     res.status(400).json(err);
   }
 });
-
-router.delete('/:id', async (req, res) => {
+//withAuth
+router.delete("/:id", async (req, res) => {
   try {
     const projectData = await Answer.destroy({
       where: {
@@ -25,7 +25,7 @@ router.delete('/:id', async (req, res) => {
     });
 
     if (!projectData) {
-      res.status(404).json({ message: 'No project found with this id!' });
+      res.status(404).json({ message: "No project found with this id!" });
       return;
     }
 
