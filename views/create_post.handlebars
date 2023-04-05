@@ -1,0 +1,58 @@
+<h1>Ask a Question</h1>
+
+<section>
+  <p>If you have a programming-related question and want to ask it effectively,
+    follow these steps:</p>
+
+  <ul>
+    <li>Create a concise, one-line title that summarizes your problem.</li>
+    <li>Describe your problem in detail. Be sure to provide enough information
+      so that others can understand the issue and offer helpful solutions.</li>
+    <li>Explain what you've already tried to solve the problem and what you
+      expected to happen. This will give others an idea of where you are in the
+      process and what steps they can suggest next.</li>
+    <li>Add "tags" to your question, which are keywords or labels that help
+      categorize it and make it easier for others to find.
+    </li>
+    <li>Review your question to ensure that it's clear and concise. Once you're
+      satisfied, post it to the site and wait for responses from the community.
+      Remember to engage with those who respond to your question, as this can
+      help clarify any misunderstandings and lead to a better solution.
+    </li>
+  </ul>
+</section>
+
+<form action="post">
+
+  <label for="post_title">Enter a title for your question:</label>
+  <input
+    type="text"
+    id="post_title"
+    ,
+    name="post_title"
+    placeholder="type here"
+    required
+  />
+
+  <label for="post_body">Enter your question:</label>
+  <textarea
+    type="text"
+    id="post_body"
+    ,
+    name="post_body"
+    placeholder="type here"
+    required
+  ></textarea>
+
+  <select id="tag-select" name="tag_id">
+    <option value="">--Select a tag--</option>
+    {{#each tags as |tag|}}
+      <option value="{{tag.tag_id}}">{{tag.tag_name}}</option>
+    {{/each}}
+  </select>
+
+  <button type="submit" id="buttonCreatePost">Submit Question</button>
+
+</form>
+
+<script src="js/createPost.js"></script>
