@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Post, User, Answer } = require("../models");
+const { Post, User, Answer, Tag } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
@@ -101,8 +101,17 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-router.get("/createPost", (req, res) => {
-  res.render("create_post");
+router.get("/createPost", async (req, res) => {
+  try {
+    const tags = await Tag.findAll({ raw: true });
+    res.render("create_post", {
+      tags,
+      //logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
