@@ -1,0 +1,12 @@
+<div class="text-center">
+  <h2>{{post.post_title}}</h2>
+  {{!-- <p>{{{get_emoji}}}</p> --}}
+  <p>{{post.post_body}}</p>
+  {{!-- <p>Created by {{post.user.name}} on {{format_date post.date_created}}</p> --}}
+  <p>Created by {{post.user.name}} on {{post.date_created}}</p>
+  <ul>
+    {{#each post.answers as  |answer| }}
+    <li>Answer: {{answer.answer_body}} // {{answer.user.name}}</li>
+    {{/each}}
+  </ul>
+</div>
