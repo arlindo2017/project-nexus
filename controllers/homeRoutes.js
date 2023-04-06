@@ -1,10 +1,10 @@
 const router = require("express").Router();
+const sequelize = require("../config/connection.js");
 const { Post, User, Answer, Tag } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
-    // Get all projects and JOIN with user data
     const postData = await Post.findAll({
       include: [
         {
@@ -21,20 +21,32 @@ router.get("/", async (req, res) => {
           ],
         },
       ],
+      attributes: [
+        "post_id",
+        "post_title",
+        "post_body",
+        "date_created",
+        "view_count",
+        [
+          sequelize.literal(
+            `(SELECT COUNT(*) FROM answer WHERE answer.post_id = post.post_id)`
+          ),
+          "answer_count",
+        ],
+        "flag_count",
+      ],
     });
 
-    // Serialize data so the template can read it
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    // res.status(200).json(posts)
-
-    // Pass serialized data and session flag into template
+    // res.status(200).json(posts);
     res.render("homepage", {
       posts,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
-    res.status(500).json(err);
+    console.log(err);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
@@ -58,15 +70,18 @@ router.get("/posts/:id", async (req, res) => {
       ],
     });
 
-    const post = postData.get({ plain: true });
+    // Increment the view_count field by 1
+    postData.view_count += 1;
+    await postData.save();
 
+    const post = postData.get({ plain: true });
     // res.status(200).json(post)
     res.render("post", {
-      // ...post,
       post,
       logged_in: req.session.logged_in,
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
