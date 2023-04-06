@@ -13,12 +13,18 @@
       {{!-- <span class="dollar-amount">{{format_amount post.needed_funding}}</span> --}}
       {{!-- needed! --}}
     {{!-- </p> --}}
-    <p>Created by {{post.user.name}} on {{format_date post.date_created}}</p>
   </div>
   <div class="col-md-7">
-    <p>
-      {{post.post_body}}
-    </p>
+    <p>{{post.post_body}}</p>
+    <p>Created by {{post.user.name}} </p>
+    <p>Date{{format_date post.date_created}}</p>
+    <p>Answers: {{post.answer_count}}</p>
+    <p>Views: {{post.view_count}}</p>
+    <p>Flag Count: {{post.flag_count}}</p>
+    
   </div>
 </div>
+<br>
+  <hr>
+  <br>
 {{/each}}
