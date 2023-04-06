@@ -1,12 +1,35 @@
 <div class="text-center">
-  <h2>{{post.post_title}}</h2>
-  {{!-- <p>{{{get_emoji}}}</p> --}}
+  <h1>{{post.post_title}}</h1>
   <p>{{post.post_body}}</p>
-  {{!-- <p>Created by {{post.user.name}} on {{format_date post.date_created}}</p> --}}
+ 
   <p>Created by {{post.user.name}} on {{post.date_created}}</p>
-  <ul>
-    {{#each post.answers as  |answer| }}
-    <li>Answer: {{answer.answer_body}} // {{answer.user.name}}</li>
-    {{/each}}
-  </ul>
+  
+  {{#each post.answers as |answer|}}
+    <div>
+      <p>Answer: {{answer.answer_body}}</p>
+      <p>{{answer.user.name}}</p>
+      {{!-- {{#if logged_in}} --}}
+        {{!-- {{#if (eq answer.user_id ../session.user_id)}} --}}  
+        <button type="click" class="btn-delete" data-answer-id="{{answer.answer_id}}">Delete</button>
+        {{!-- {{/if}} --}}
+      {{!-- {{/if}} --}}
+    </div>
+    <hr>
+  {{/each}}
 </div>
+
+<div>
+  <form id="add-answer-form">
+    <label for="answer-body">Your answer:</label>
+    <textarea id="answer-body" name="answer-body" placeholder="Add your answer here ..." required></textarea>
+    <input visible="hidden" name="post-id" id="post-id" value="{{post.post_id}}">
+    {{!-- {{#if logged_in}} --}}
+      <button type="submit">Add your answer</button>
+    {{!-- {{else}} --}}
+      {{!-- <p>Please log in to add an answer.</p> --}}
+    {{!-- {{/if}} --}}
+  </form>
+</div>
+
+
+
