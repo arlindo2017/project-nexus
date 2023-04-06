@@ -1,35 +1,35 @@
 const router = require("express").Router();
 const { Answer } = require("../../models");
 const withAuth = require("../../utils/auth");
-//withAuth
+
 router.post("/", async (req, res) => {
   try {
-    const newProject = await Answer.create({
+    const newAnswer = await Answer.create({
       ...req.body,
       user_id: req.session.user_id,
     });
 
-    res.status(200).json(newProject);
+    res.status(200).json(newAnswer);
   } catch (err) {
     res.status(400).json(err);
   }
 });
-//withAuth
+
 router.delete("/:id", async (req, res) => {
   try {
-    const projectData = await Answer.destroy({
+    const answerData = await Answer.destroy({
       where: {
         answer_id: req.params.id,
         //user_id: req.session.user_id,
       },
     });
 
-    if (!projectData) {
-      res.status(404).json({ message: "No project found with this id!" });
+    if (!answerData) {
+      res.status(404).json({ message: "No answer found with this id!" });
       return;
     }
 
-    res.status(200).json(projectData);
+    res.status(200).json(answerData);
   } catch (err) {
     res.status(500).json(err);
   }
