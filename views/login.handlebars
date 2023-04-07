@@ -1,42 +1,18 @@
-<div class="row">
-  <div class="col-md-6">
-    <h2>Login</h2>
+<div class="flex justify-center">
+  <div>
+    <h2 class="text-2xl text-center font-bold text-slate-800 pb-3">Login</h2>
 
-    <form class="form login-form">
-      <div class="form-group">
-        <label for="email-login">email:</label>
-        <input class="form-input" type="text" id="email-login" />
-      </div>
-      <div class="form-group">
-        <label for="password-login">password:</label>
-        <input class="form-input" type="password" id="password-login" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">login</button>
-      </div>
+    <form class="form login-form flex flex-col gap-y-3">        
+        <input class="w-96 p-3 rounded-lg shadow-md border text-gray-800 border-blue-500 placeholder:text-blue-500" type="text" id="email-login" placeholder="e-mail"/>        
+        <input class="w-96 p-3 rounded-lg shadow-md border text-gray-800 border-blue-500 placeholder:text-blue-500" type="password" id="password-login" placeholder="password" />
+        <button class="p-3 rounded-lg shadow-md text-slate-100 bg-blue-500 hover:bg-blue-400 transition duration-300 ease-in-out" type="submit">login</button>
     </form>
-  </div>
-  <div class="col-md-6">
-    <h2>Signup</h2>
-
-    <form class="form signup-form">
-      <div class="form-group">
-        <label for="name-signup">name:</label>
-        <input class="form-input" type="text" id="name-signup" />
-      </div>
-      <div class="form-group">
-        <label for="email-signup">email:</label>
-        <input class="form-input" type="text" id="email-signup" />
-      </div>
-      <div class="form-group">
-        <label for="password-signup">password:</label>
-        <input class="form-input" type="password" id="password-signup" />
-      </div>
-      <div class="form-group">
-        <button class="btn btn-primary" type="submit">signup</button>
-      </div>
-    </form>
-  </div>
+    <hr>
+    <br>
+    <h4 class="text-center text-gray-800">Not a member yet?</h4>
+    <br>
+    <a href="/api/users/signup" class="text-center p-3 border border-blue-500 hover:border-blue-400 ease-in-out transition duration-300 rounded-lg block">Sign up</a>
+  </div> 
 </div>
 
 <script src="/js/login.js"></script>
