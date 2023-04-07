@@ -29,11 +29,11 @@ Post.init(
       allowNull: true,
       defaultValue: 0,
     },
-    answer_count: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      defaultValue: 0,
-    },
+    // answer_count: {
+    //   type: DataTypes.INTEGER,
+    //   allowNull: true,
+    //   defaultValue: 0,
+    // },
     flag_count: {
       type: DataTypes.INTEGER,
       allowNull: true,

@@ -13,6 +13,9 @@
     <p><span class="text-blue-500">Answers:</span> {{post.answer_count}}</p>
     <p><span class="text-blue-500">Views:</span> {{post.view_count}}</p>
     <p><span class="text-blue-500">Flag Count:</span> {{post.flag_count}}</p>
+    <p><span class="text-blue-500">Tag</span> {{post.tag.tag_name}}</p>
+
+    
     <button type="click" class="post-btn-delete" data-post-id="{{post.post_id}}">Delete</button>
     <button type="click" class="flag-post-btn" data-post-id="{{post.post_id}}">Flag Post</button>
   </div>  
