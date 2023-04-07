@@ -17,6 +17,8 @@
   <div class="col-md-7">
     <p>{{post.post_body}}</p>
     <button type="click" class="post-btn-delete" data-post-id="{{post.post_id}}">Delete</button>
+    <button type="click" class="flag-post-btn" data-post-id="{{post.post_id}}">Flag Post</button>
+
     <p>Created by {{post.user.name}} </p>
     <p>Date{{format_date post.date_created}}</p>
     <p>Answers: {{post.answer_count}}</p>
