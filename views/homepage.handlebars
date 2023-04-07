@@ -1,30 +1,20 @@
 <!-- Loop over each object in the projects array -->
 {{#each posts as |post| }}
-<div class="row mb-4 project">
-  <div class="col-md-5">
-    <h2>
-      <!-- Call helper function with triple brackets to render the emoji span as HTML -->
-      {{!-- {{{get_emoji}}} --}}
-      <a href="/posts/{{post.post_id}}">{{post.post_title}}</a>
-    </h2>
-    {{!-- <p> --}}
-      {{!-- <span for="img" aria-label="money">💲</span> --}}
-      <!-- Pass needed_funding value to the helper function -->
-      {{!-- <span class="dollar-amount">{{format_amount post.needed_funding}}</span> --}}
-      {{!-- needed! --}}
-    {{!-- </p> --}}
-  </div>
-  <div class="col-md-7">
-    <p>{{post.post_body}}</p>
-    <p>Created by {{post.user.name}} </p>
-    <p>Date{{format_date post.date_created}}</p>
-    <p>Answers: {{post.answer_count}}</p>
-    <p>Views: {{post.view_count}}</p>
-    <p>Flag Count: {{post.flag_count}}</p>
-    
-  </div>
-</div>
-<br>
-  <hr>
+  {{!-- Display POST Title --}}
+  <h2 class="font-bold text-3xl pb-2">      
+    <a href="/posts/{{post.post_id}}">{{post.post_title}}</a>
+  </h2>            
+  <p><span class="text-blue-500">Created by</span> {{post.user.name}} </p>
+  <p><span class="text-blue-500">Date</span> {{format_date post.date_created}}</p>
+  
+  <p class="py-4">{{post.post_body}}</p>
+
+  <div class="flex gap-x-8">
+    <p><span class="text-blue-500">Answers:</span> {{post.answer_count}}</p>
+    <p><span class="text-blue-500">Views:</span> {{post.view_count}}</p>
+    <p><span class="text-blue-500">Flag Count:</span> {{post.flag_count}}</p>
+  </div>  
+  <br>
+    <hr>
   <br>
 {{/each}}
