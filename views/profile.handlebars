@@ -14,7 +14,29 @@ Phase 2
 
 --}}
 
+<div class="row">
+  <div class="col-md-6">
+<h1>Welcome, {{name}} {{email}}</h1>
 
+<div class="row"></div>
+<p>User since: {{format_date last_logged_in}}</p>
+
+<form action="/logout" method="POST">
+  <button type="submit">Log out</button>
+</form>
+</div>
+
+
+
+{{!-- More info about the user --}}
+
+{{!-- <div class="grid--item" id="stats" data-is-here-when="lg">
+  <div class="fs-title mb8">Stats</div> --}}
+
+
+
+
+{{!-- 
 <div class="row">
   <div class="col-auto">
     <h2>Welcome, {{name}}!</h2>
@@ -60,6 +82,6 @@ Phase 2
     {{/each}}
   </div>
   {{/if}}
-</div>
+</div> --}}
 
 <script src="./js/profile.js"></script>
