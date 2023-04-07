@@ -9,18 +9,28 @@ router.post('/', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-
-      res.status(200).json(userData);
+      
+      res.render('/profile');
+      // res.status(200).json(userData);
     });
   } catch (err) {
     res.status(400).json(err);
   }
 });
 
-// Displays login / sign up page
+// Displays login page
 router.get('/login', (req, res) => {
   try {
     res.render('login');
+  } catch (err) {
+    res.status(404).json(err);
+  }
+});
+
+// Displays signup page
+router.get('/signup', (req, res) => {
+  try {
+    res.render('signup');
   } catch (err) {
     res.status(404).json(err);
   }
