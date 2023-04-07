@@ -2,8 +2,9 @@ const router = require("express").Router();
 const Post = require("../../models/Post");
 //const withAuth = require("../../utils/auth");
 
-//withAuth
+// API route to add new posts
 router.post("/", async (req, res) => {
+  // add this once authentication is done ->  withAuth
   try {
     const newPost = await Post.create({
       ...req.body,
@@ -16,8 +17,9 @@ router.post("/", async (req, res) => {
   }
 });
 
-//withAuth
+//API route to delete specific Posts
 router.delete("/:id", async (req, res) => {
+  // add this once authentication is done ->  withAuth
   try {
     const deletePost = await Post.destroy({
       where: {
@@ -34,6 +36,26 @@ router.delete("/:id", async (req, res) => {
     res.status(200).json(deletePost);
   } catch (err) {
     res.status(500).json(err);
+  }
+});
+
+// API route to flag posts innappropriate
+router.post("/flag/:id", async (req, res) => {
+  try {
+    const post = await Post.findByPk(req.params.id);
+    if (!post) {
+      res.status(404).json({ message: "Post not found" });
+      return;
+    }
+
+    // Increment the flag_count field by 1
+    post.flag_count += 1;
+    await post.save();
+
+    res.status(200).json({ message: "Post flagged successfully" });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal Server Error" });
   }
 });
 
