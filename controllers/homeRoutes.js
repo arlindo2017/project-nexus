@@ -12,6 +12,10 @@ router.get("/", async (req, res) => {
           attributes: ["name"],
         },
         {
+          model: Tag,
+          attributes: ["tag_name"],
+        },
+        {
           model: Answer,
           include: [
             {
@@ -39,7 +43,7 @@ router.get("/", async (req, res) => {
 
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    // res.status(200).json(posts);
+    //res.status(200).json(posts);
     res.render("homepage", {
       posts,
       logged_in: req.session.logged_in,
@@ -87,10 +91,11 @@ router.get("/posts/:id", async (req, res) => {
 });
 
 // Use withAuth middleware to prevent access to route
-router.get("/profile",  async (req, res) => {
+router.get("/profile", async (req, res) => {
   try {
     // Find the logged in user based on the session ID
-    const userData = await User.findByPk(10, { //req.session.user_id
+    const userData = await User.findByPk(10, {
+      //req.session.user_id
       attributes: { exclude: ["password"] },
       include: [{ model: Post }],
     });
