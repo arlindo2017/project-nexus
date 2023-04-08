@@ -10,6 +10,7 @@ flagPostBtnEl.forEach((btn) => {
       });
       // Reload page after deleting answer.
       document.location.reload();
+      //console.log(postId);
     } catch (err) {
       console.error(err);
     }
