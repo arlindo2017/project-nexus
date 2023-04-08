@@ -4,10 +4,60 @@ const { Post, User, Answer, Tag } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
-  res.render('homepage');
+  try {
+    const postData = await Post.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ["name"],
+        },
+        {
+          model: Tag,
+          attributes: ["tag_name"],
+        },
+        {
+          model: Answer,
+          include: [
+            {
+              model: User,
+              attributes: ["name"],
+            },
+          ],
+        },
+      ],
+      attributes: [
+        "post_id",
+        "post_title",
+        "post_body",
+        "date_created",
+        "view_count",
+        "user_id",
+        [
+          sequelize.literal(
+            `(SELECT COUNT(*) FROM answer WHERE answer.post_id = post.post_id)`
+          ),
+          "answer_count",
+        ],
+        "flag_count",
+      ],
+      order: [["view_count", "DESC"]],
+      limit: 3,
+    });
+
+    const posts = postData.map((post) => post.get({ plain: true }));
+
+    //res.status(200).json(posts);
+    res.render("homepage", {
+      posts,
+      logged_in: req.session.logged_in,
+      session_name: req.session.name,
+      session_user_id: req.session.user_id,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 });
-
-
 
 router.get("/questions", async (req, res) => {
   try {
@@ -46,6 +96,7 @@ router.get("/questions", async (req, res) => {
         ],
         "flag_count",
       ],
+      order: [["view_count", "DESC"]],
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
