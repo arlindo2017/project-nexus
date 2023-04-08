@@ -31,6 +31,7 @@ router.get("/", async (req, res) => {
         "post_body",
         "date_created",
         "view_count",
+        "user_id",
         [
           sequelize.literal(
             `(SELECT COUNT(*) FROM answer WHERE answer.post_id = post.post_id)`
@@ -43,10 +44,12 @@ router.get("/", async (req, res) => {
 
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    //res.status(200).json(posts);
+    // res.status(200).json(posts);
     res.render("homepage", {
       posts,
       logged_in: req.session.logged_in,
+      session_name: req.session.name,
+      session_user_id: req.session.user_id,
     });
   } catch (err) {
     console.log(err);
@@ -83,6 +86,8 @@ router.get("/posts/:id", async (req, res) => {
     res.render("post", {
       post,
       logged_in: req.session.logged_in,
+      name: req.session.name,
+      user_id: req.session.user_id,
     });
   } catch (err) {
     console.log(err);
@@ -94,7 +99,7 @@ router.get("/posts/:id", async (req, res) => {
 router.get("/profile", async (req, res) => {
   try {
     // Find the logged in user based on the session ID
-    const userData = await User.findByPk(10, {
+    const userData = await User.findByPk(req.session.user_id, {
       //req.session.user_id
       attributes: { exclude: ["password"] },
       include: [{ model: Post }],
@@ -104,7 +109,9 @@ router.get("/profile", async (req, res) => {
 
     res.render("profile", {
       ...user,
-      logged_in: true,
+      logged_in: req.session.logged_in,
+      name: req.session.name,
+      user_id: req.session.user_id,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -121,12 +128,15 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-router.get("/createPost", async (req, res) => {
+router.get("/createPost", withAuth, async (req, res) => {
   try {
     const tags = await Tag.findAll({ raw: true });
+
     res.render("create_post", {
       tags,
-      //logged_in: req.session.logged_in,
+      logged_in: req.session.logged_in,
+      name: req.session.name,
+      user_id: req.session.user_id,
     });
   } catch (err) {
     console.log(err);

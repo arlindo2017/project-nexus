@@ -22,7 +22,7 @@
           </a>
           <a href="#" class="font-bold text-slate-800 hover:text-blue-900 transition duration-300">Questions</a>
           <a href="#" class="font-bold text-slate-800 hover:text-blue-900 transition duration-300">Tags</a>
-          <a href="/createPost" class="font-bold text-slate-800 hover:text-blue-900 transition duration-300">Ask Question</a>
+          {{!-- <a href="/createPost" class="font-bold text-slate-800 hover:text-blue-900 transition duration-300">Ask Question</a> --}}
         </div>
         {{!-- Right side of nav bar --}}
         <div class="flex gap-x-3">
@@ -45,6 +45,16 @@
     <main class="px-8 md:px-20">
       <section class="max-w-screen-xl mx-auto bg-gray-50 p-12 rounded-3xl my-8 shadow-lg">
         <!-- Render the sub layout -->
+        {{#if logged_in}}
+          <div style="display: flex; justify-content: flex-end;">
+            <a href="/createPost" class="font-bold text-slate-800 hover:text-blue-900 transition duration-300">Ask Question</a>
+          </div>
+        {{else}}
+        <div style="display: flex; justify-content: flex-end;">
+          <a href="/login" class="font-bold text-slate-800 hover:text-blue-900 transition duration-300">Ask Question</a>
+        </div>
+        {{/if}}
+
         {{{body}}}
       </section>
     </main>
@@ -58,10 +68,10 @@
     <!-- Render script for logged in users only -->
     {{#if logged_in}}
       <script src="/js/logout.js"></script>
+      <script src="/js/addAnswer.js"></script>
+      <script src="/js/deletePost.js"></script>
+      <script src="/js/flagPost.js"></script>
     {{/if}}
-    <script src="/js/addAnswer.js"></script>
-    <script src="/js/deletePost.js"></script>
-    <script src="/js/flagPost.js"></script>
   </body>
 
 </html>
