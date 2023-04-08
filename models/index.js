@@ -37,4 +37,6 @@ Post.hasOne(Tag, {
   onDelete: "SET NULL",
 });
 
+// Tag.belongsTo(Post)
+
 module.exports = { User, Post, Answer, Tag };

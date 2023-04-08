@@ -4,6 +4,12 @@ const { Post, User, Answer, Tag } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
+  res.render('homepage');
+});
+
+
+
+router.get("/questions", async (req, res) => {
   try {
     const postData = await Post.findAll({
       include: [
@@ -45,7 +51,7 @@ router.get("/", async (req, res) => {
     const posts = postData.map((post) => post.get({ plain: true }));
 
     // res.status(200).json(posts);
-    res.render("homepage", {
+    res.render("questions", {
       posts,
       logged_in: req.session.logged_in,
       session_name: req.session.name,
