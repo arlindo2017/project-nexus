@@ -1,87 +1,90 @@
-{{!-- 
+{{!--
 
 Phase 1
 - User name
 - user since date (last_logged_in)
-- log out button 
+- log out button
 
 
 Phase 2
-  a place where a user can see some statistics about that user
-  some ideas
-  - user posts/answers
-  - https://stackoverflow.com/users/16343464/mozway
+a place where a user can see some statistics about that user
+some ideas
+- user posts/answers
+- https://stackoverflow.com/users/16343464/mozway
 
 --}}
+<br>
+<section class="max-w-screen-xl mx-auto bg-gray-50 p-12 rounded-3xl my-8 shadow-lg">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Welcome, {{name}} {{email}}</h1>
 
-<div class="row">
-  <div class="col-md-6">
-<h1>Welcome, {{name}} {{email}}</h1>
+            <div class="row"></div>
+            <p>User since: {{format_date last_logged_in}}</p>
 
-<div class="row"></div>
-<p>User since: {{format_date last_logged_in}}</p>
-
-<form action="/logout" method="POST">
-  <button type="submit">Log out</button>
-</form>
-</div>
-
+            <form action="/logout" method="POST">
+                <button type="submit">Log out</button>
+            </form>
+        </div>
+    </div>
+</section>
+<br>
 
 
 {{!-- More info about the user --}}
 
 {{!-- <div class="grid--item" id="stats" data-is-here-when="lg">
-  <div class="fs-title mb8">Stats</div> --}}
+    <div class="fs-title mb8">Stats</div> --}}
 
 
 
 
-{{!-- 
-<div class="row">
-  <div class="col-auto">
-    <h2>Welcome, {{name}}!</h2>
-  </div>
-</div>
-
-<div class="row mt-4">
-  <div class="col-md-6">
-    <h3>Create a New Project:</h3>
-
-    <form class="form new-project-form">
-      <div class="form-group">
-        <label for="project-name">project name:</label>
-        <input class="form-input" type="text" id="project-name" name="project-name" />
-      </div>
-      <div class="form-group">
-        <label for="project-funding">needed funding ($):</label>
-        <input class="form-input" type="number" id="project-funding" name="project-funding" />
-      </div>
-      <div class="form-group">
-        <label for="project-desc">description:</label>
-        <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
-      </div>
-    </form>
-  </div>
-
-  {{#if projects.length}}
-  <div class="col-md-6 project-list">
-    <h3>Current Projects:</h3>
-
-    {{#each projects as |project|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/project/{{project.id}}">{{project.name}}</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{project.id}}">DELETE</button>
-      </div>
+    {{!--
+    <div class="row">
+        <div class="col-auto">
+            <h2>Welcome, {{name}}!</h2>
+        </div>
     </div>
-    {{/each}}
-  </div>
-  {{/if}}
-</div> --}}
 
-<script src="./js/profile.js"></script>
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <h3>Create a New Project:</h3>
+
+            <form class="form new-project-form">
+                <div class="form-group">
+                    <label for="project-name">project name:</label>
+                    <input class="form-input" type="text" id="project-name" name="project-name" />
+                </div>
+                <div class="form-group">
+                    <label for="project-funding">needed funding ($):</label>
+                    <input class="form-input" type="number" id="project-funding" name="project-funding" />
+                </div>
+                <div class="form-group">
+                    <label for="project-desc">description:</label>
+                    <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                </div>
+            </form>
+        </div>
+
+        {{#if projects.length}}
+        <div class="col-md-6 project-list">
+            <h3>Current Projects:</h3>
+
+            {{#each projects as |project|}}
+            <div class="row mb-2">
+                <div class="col-md-8">
+                    <h4><a href="/project/{{project.id}}">{{project.name}}</a></h4>
+                </div>
+                <div class="col-md-4">
+                    <button class="btn btn-sm btn-danger" data-id="{{project.id}}">DELETE</button>
+                </div>
+            </div>
+            {{/each}}
+        </div>
+        {{/if}}
+    </div> --}}
+
+    <script src="./js/profile.js"></script>
