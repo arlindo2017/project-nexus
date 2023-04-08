@@ -27,29 +27,27 @@ router.get("/:id", async (req, res) => {
           model: User,
           attributes: ["name"],
         },
-        {
-          model: Tag,
-          attributes: ["tag_name"],
-        },
-        {
-          model: Answer,
-          include: [
-            {
-              model: User,
-              attributes: ["name"],
-            },
-          ],
-        },
-      ],
-      where: {
-        tag_id: req.params.id,
-      },
+        // {
+        //   model: Tag,
+        //   // attributes: ["tag_name"],
+        // },
+        // {
+        //   model: Answer,
+        //   include: [
+        //     {
+        //       model: User,
+        //       attributes: ["name"],
+        //     },
+        //   ],
+        // },
+      ],            
       attributes: [
         "post_id",
         "post_title",
         "post_body",
         "date_created",
         "view_count",
+        "tag_id",
         [
           sequelize.literal(
             `(SELECT COUNT(*) FROM answer WHERE answer.post_id = post.post_id)`
@@ -58,17 +56,20 @@ router.get("/:id", async (req, res) => {
         ],
         "flag_count",
       ],
+      where: {       
+        tag_id: req.params.id,
+      },
     });   
 
     const posts = postData.map((post) => post.get({ plain: true }));
-    // res.status(200).json(posts);
+    res.status(200).json(posts);
 
     // console.log("TAG NAME", posts[0].tag.tag_name)
-    res.render('tagPosts', { 
-      posts,
-      tagName: posts[0].tag.tag_name,
-      logged_in: req.session.logged_in, 
-    });
+    // res.render('tagPosts', { 
+    //   posts,
+    //   tagName: posts[0].tag.tag_name,
+    //   logged_in: req.session.logged_in, 
+    // });
 
   } catch (err) {
     res.status(400).json(err);
