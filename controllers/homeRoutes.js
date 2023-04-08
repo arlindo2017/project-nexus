@@ -135,6 +135,7 @@ router.get("/createPost", withAuth, async (req, res) => {
     res.render("create_post", {
       tags,
       logged_in: req.session.logged_in,
+
       name: req.session.name,
       user_id: req.session.user_id,
     });
