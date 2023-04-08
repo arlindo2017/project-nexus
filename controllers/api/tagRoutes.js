@@ -9,7 +9,10 @@ router.get('/', async (req, res) => {
 
     const tags = tagsData.map((tag) => tag.get({ plain: true }));
 
-    res.render('tags', { tags })
+    res.render('tags', { 
+      tags,
+      logged_in: req.session.logged_in,  
+    })
   } catch (err) {
     res.status(400).json(err);
   };

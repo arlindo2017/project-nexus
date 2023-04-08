@@ -126,7 +126,7 @@ router.get("/createPost", async (req, res) => {
     const tags = await Tag.findAll({ raw: true });
     res.render("create_post", {
       tags,
-      //logged_in: req.session.logged_in,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     console.log(err);
