@@ -12,19 +12,19 @@ router.get("/", async (req, res) => {
           model: User,
           attributes: ["name"],
         },
-        {
-          model: Tag,
-          attributes: ["tag_name"],
-        },
-        {
-          model: Answer,
-          include: [
-            {
-              model: User,
-              attributes: ["name"],
-            },
-          ],
-        },
+        // {
+        //   model: Tag,
+        //   attributes: ["tag_name"],
+        // },
+        // {
+        //   model: Answer,
+        //   include: [
+        //     {
+        //       model: User,
+        //       attributes: ["name"],
+        //     },
+        //   ],
+        // },
       ],
       attributes: [
         "post_id",
@@ -34,6 +34,12 @@ router.get("/", async (req, res) => {
         "view_count",
         "user_id",
         "flag_count",
+        [
+          sequelize.literal(
+            `(SELECT tag_name FROM tag WHERE tag_id = post.tag_id)`
+          ),
+          "tag_name",
+        ],
         [
           sequelize.literal(
             `(SELECT COUNT(*) FROM answer WHERE answer.post_id = post.post_id)`
@@ -74,19 +80,19 @@ router.get("/questions", async (req, res) => {
           model: User,
           attributes: ["name"],
         },
-        {
-          model: Tag,
-          attributes: ["tag_name"],
-        },
-        {
-          model: Answer,
-          include: [
-            {
-              model: User,
-              attributes: ["name"],
-            },
-          ],
-        },
+        // {
+        //   model: Tag,
+        //   attributes: ["tag_name"],
+        // },
+        // {
+        //   model: Answer,
+        //   include: [
+        //     {
+        //       model: User,
+        //       attributes: ["name"],
+        //     },
+        //   ],
+        // },
       ],
       attributes: [
         "post_id",
@@ -95,6 +101,13 @@ router.get("/questions", async (req, res) => {
         "date_created",
         "view_count",
         "user_id",
+        "tag_id",
+        [
+          sequelize.literal(
+            `(SELECT tag_name FROM tag WHERE tag_id = post.tag_id)`
+          ),
+          "tag_name",
+        ],
         [
           sequelize.literal(
             `(SELECT COUNT(*) FROM answer WHERE answer.post_id = post.post_id)`
