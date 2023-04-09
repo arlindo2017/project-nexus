@@ -3,6 +3,7 @@ const sequelize = require("../config/connection.js");
 const { Post, User, Answer, Tag } = require("../models");
 const withAuth = require("../utils/auth");
 
+//Landing Page Route
 router.get("/", async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -32,26 +33,31 @@ router.get("/", async (req, res) => {
         "date_created",
         "view_count",
         "user_id",
+        "flag_count",
         [
           sequelize.literal(
             `(SELECT COUNT(*) FROM answer WHERE answer.post_id = post.post_id)`
           ),
           "answer_count",
         ],
-        "flag_count",
       ],
       order: [["view_count", "DESC"]],
       limit: 3,
     });
 
+    const userCountData = await User.count();
+    const postCountData = await Post.count();
+    const answerCountData = await Answer.count();
     const posts = postData.map((post) => post.get({ plain: true }));
 
-    //res.status(200).json(posts);
     res.render("homepage", {
       posts,
       logged_in: req.session.logged_in,
       session_name: req.session.name,
       session_user_id: req.session.user_id,
+      user_count: userCountData,
+      post_count: postCountData,
+      answer_count: answerCountData,
     });
   } catch (err) {
     console.log(err);
@@ -59,6 +65,7 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Questions Route
 router.get("/questions", async (req, res) => {
   try {
     const postData = await Post.findAll({
