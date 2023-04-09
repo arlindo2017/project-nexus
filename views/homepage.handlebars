@@ -8,13 +8,25 @@
         </div>
         <div>
             <p>Right side</p>
+        </div>    
+    </div>
+    <hr>
+    <div class="flex col-3 mt-8 gap-8">
+        <div>
+            <span class="font-bold text-xl pb-2">Members: </span>{{user_count}} 
+        </div>
+        <div>
+            <span class="font-bold text-xl pb-2">Posts: </span>{{post_count}} 
+        </div>
+        <div>
+            <span class="font-bold text-xl pb-2">Answers: </span>{{answer_count}} 
         </div>
     </div>
 </section>
 <h1 class="font-bold text-3xl pb-2">Featured Posts</h1>
 <section class="flex col-3 gap-8">
     {{#each posts as |post| }}
-    <div class="max-w-screen-xl mx-auto bg-gray-50 p-12 rounded-3xl my-8 shadow-lg w-full flex-wrap">
+    <div class="max-w-screen-xl mx-auto bg-slate-200 p-12 my-8 shadow-lg w-full flex-wrap">
         {{!-- Display POST Title --}}
         <h2 class="font-bold text-3xl pb-2">      
             <a href="/posts/{{post.post_id}}">{{post.post_title}}</a>
