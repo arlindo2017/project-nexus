@@ -3,12 +3,75 @@ const sequelize = require("../config/connection.js");
 const { Post, User, Answer, Tag } = require("../models");
 const withAuth = require("../utils/auth");
 
+//Landing Page Route
 router.get("/", async (req, res) => {
-  res.render('homepage');
+  try {
+    const postData = await Post.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ["name"],
+        },
+        // {
+        //   model: Tag,
+        //   attributes: ["tag_name"],
+        // },
+        // {
+        //   model: Answer,
+        //   include: [
+        //     {
+        //       model: User,
+        //       attributes: ["name"],
+        //     },
+        //   ],
+        // },
+      ],
+      attributes: [
+        "post_id",
+        "post_title",
+        "post_body",
+        "date_created",
+        "view_count",
+        "user_id",
+        "flag_count",
+        [
+          sequelize.literal(
+            `(SELECT tag_name FROM tag WHERE tag_id = post.tag_id)`
+          ),
+          "tag_name",
+        ],
+        [
+          sequelize.literal(
+            `(SELECT COUNT(*) FROM answer WHERE answer.post_id = post.post_id)`
+          ),
+          "answer_count",
+        ],
+      ],
+      order: [["view_count", "DESC"]],
+      limit: 4,
+    });
+
+    const userCountData = await User.count();
+    const postCountData = await Post.count();
+    const answerCountData = await Answer.count();
+    const posts = postData.map((post) => post.get({ plain: true }));
+
+    res.render("homepage", {
+      posts,
+      logged_in: req.session.logged_in,
+      session_name: req.session.name,
+      session_user_id: req.session.user_id,
+      user_count: userCountData,
+      post_count: postCountData,
+      answer_count: answerCountData,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
 });
 
-
-
+// Questions Route
 router.get("/questions", async (req, res) => {
   try {
     const postData = await Post.findAll({
@@ -53,6 +116,7 @@ router.get("/questions", async (req, res) => {
         ],
         "flag_count",
       ],
+      order: [["view_count", "DESC"]],
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));

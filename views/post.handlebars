@@ -1,25 +1,30 @@
-<div class="flex">
-    <div>
-       <div>
-            <img src="/img/profile-placeholder.png" alt="Profile Image" style="min-width:50px; max-width:100px">
+<section class="max-w-screen-xl mx-auto bg-gray-50 p-12 rounded-3xl my-8 shadow-lg">
+    <div class="flex">
+        <div>
+            <div>
+                    <img src="/img/profile-placeholder.png" alt="Profile Image" style="min-width:50px; max-width:100px">
+                </div>
+                <div class="text-center">
+                    <span class="text-blue-500">{{post.user.name}} </span>
+                </div>
+                <div class="text-center mt-1">
+                    <span class="text-blue-500">{{format_date post.date_created}}</span> 
+                </div>
+            </div>
+            <div class="ml-6 w-full mb-10">
+                <h2 class="font-bold text-3xl pb-2">      
+                    <a href="/posts/{{post.post_id}}">{{post.post_title}}</a>
+                </h2>
+                <div>
+                    <p class="py-4">{{post.post_body}}</p>
+                </div>
+            </div>
         </div>
-        <div class="text-center">
-            <span class="text-blue-500">{{post.user.name}} </span>
-        </div>
-        <div class="text-center mt-1">
-            <span class="text-blue-500">{{format_date post.date_created}}</span> 
-        </div>
-    </div>
-    <div class="ml-6 w-full">
-        <h2 class="font-bold text-3xl pb-2">      
-            <a href="/posts/{{post.post_id}}">{{post.post_title}}</a>
-        </h2>
-         <div>
-            <p class="py-4">{{post.post_body}}</p>
-        </div>  
         <br>
         <hr>
         <br>
+    </div>
+    <div>
         {{#each post.answers as |answer|}}
         <div>
             <div>
@@ -62,7 +67,6 @@
             </div>
         </form>
     </div>
-</div>
-
+</section>
 
 
