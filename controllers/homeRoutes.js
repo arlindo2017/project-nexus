@@ -209,4 +209,18 @@ router.get("/createPost", withAuth, async (req, res) => {
   }
 });
 
+router.get("/about", async (req, res) => {
+  try {
+    res.render("about", {
+      logged_in: req.session.logged_in,
+
+      name: req.session.name,
+      user_id: req.session.user_id,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
