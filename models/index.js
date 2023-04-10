@@ -2,6 +2,7 @@ const User = require("../models/User.js");
 const Post = require("../models/Post.js");
 const Answer = require("../models/Answer.js");
 const Tag = require("../models/Tag.js");
+const userTag = require("../models/userFlags.js");
 
 User.hasMany(Post, {
   foreignKey: "user_id",
@@ -39,4 +40,6 @@ Post.hasOne(Tag, {
 
 // Tag.belongsTo(Post)
 
-module.exports = { User, Post, Answer, Tag };
+
+
+module.exports = { User, Post, Answer, Tag, userTag };
