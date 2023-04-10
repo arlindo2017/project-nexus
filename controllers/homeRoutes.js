@@ -66,9 +66,12 @@ router.get("/", async (req, res) => {
       answer_count: answerCountData,
     });
   } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
+    // console.log(err);
+    // res.status(500).json({ message: "Internal Server Error" });
+    res.render('error', {
+      logged_in: req.session.logged_in, 
+  });
+}
 });
 
 // Questions Route
@@ -128,10 +131,13 @@ router.get("/questions", async (req, res) => {
       session_name: req.session.name,
       session_user_id: req.session.user_id,
     });
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ message: "Internal Server Error" });
-  }
+  } catch (err) {    
+    // console.log(err);
+    // res.status(500).json({ message: "Internal Server Error" });
+    res.render('error', {
+      logged_in: req.session.logged_in, 
+  });
+}  
 });
 
 router.get("/posts/:id", async (req, res) => {
@@ -167,9 +173,14 @@ router.get("/posts/:id", async (req, res) => {
       user_id: req.session.user_id,
     });
   } catch (err) {
-    console.log(err);
-    res.status(500).json(err);
-  }
+    // console.log(err);
+    // res.status(500).json(err);
+    // console.log(err);
+    // res.status(500).json({ message: "Internal Server Error" });
+    res.render('error', {
+      logged_in: req.session.logged_in, 
+  });
+}
 });
 
 // Use withAuth middleware to prevent access to route
