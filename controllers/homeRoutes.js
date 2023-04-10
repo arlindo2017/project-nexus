@@ -12,19 +12,6 @@ router.get("/", async (req, res) => {
           model: User,
           attributes: ["name"],
         },
-        // {
-        //   model: Tag,
-        //   attributes: ["tag_name"],
-        // },
-        // {
-        //   model: Answer,
-        //   include: [
-        //     {
-        //       model: User,
-        //       attributes: ["name"],
-        //     },
-        //   ],
-        // },
       ],
       attributes: [
         "post_id",
@@ -68,10 +55,10 @@ router.get("/", async (req, res) => {
   } catch (err) {
     // console.log(err);
     // res.status(500).json({ message: "Internal Server Error" });
-    res.render('error', {
-      logged_in: req.session.logged_in, 
-  });
-}
+    res.render("error", {
+      logged_in: req.session.logged_in,
+    });
+  }
 });
 
 // Questions Route
@@ -81,21 +68,8 @@ router.get("/questions", async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ["name"],
+          attributes: ["name", "user_img"],
         },
-        // {
-        //   model: Tag,
-        //   attributes: ["tag_name"],
-        // },
-        // {
-        //   model: Answer,
-        //   include: [
-        //     {
-        //       model: User,
-        //       attributes: ["name"],
-        //     },
-        //   ],
-        // },
       ],
       attributes: [
         "post_id",
@@ -131,13 +105,13 @@ router.get("/questions", async (req, res) => {
       session_name: req.session.name,
       session_user_id: req.session.user_id,
     });
-  } catch (err) {    
+  } catch (err) {
     // console.log(err);
     // res.status(500).json({ message: "Internal Server Error" });
-    res.render('error', {
-      logged_in: req.session.logged_in, 
-  });
-}  
+    res.render("error", {
+      logged_in: req.session.logged_in,
+    });
+  }
 });
 
 router.get("/posts/:id", async (req, res) => {
@@ -177,14 +151,14 @@ router.get("/posts/:id", async (req, res) => {
     // res.status(500).json(err);
     // console.log(err);
     // res.status(500).json({ message: "Internal Server Error" });
-    res.render('error', {
-      logged_in: req.session.logged_in, 
-  });
-}
+    res.render("error", {
+      logged_in: req.session.logged_in,
+    });
+  }
 });
 
 // Use withAuth middleware to prevent access to route
-router.get("/profile", async (req, res) => {
+router.get("/profile", withAuth, async (req, res) => {
   try {
     // Find the logged in user based on the session ID
     const userData = await User.findByPk(req.session.user_id, {
@@ -194,6 +168,8 @@ router.get("/profile", async (req, res) => {
     });
 
     const user = userData.get({ plain: true });
+
+    //res.status(200).json(user);
 
     res.render("profile", {
       ...user,
