@@ -13,8 +13,11 @@
 <body>
     <header>
         {{!-- Main navigation container --}}
-        <nav
-        class="flex-no-wrap relative flex w-full items-center justify-between bg-neutral-100 py-2 shadow-md shadow-black/5  lg:flex-wrap lg:justify-start lg:py-4"
+        <div class="px-8 md:px-20">
+        {{!-- <section class="max-w-screen-xl mx-auto bg-gray-50 p-12 rounded-3xl my-8 shadow-lg"></section> --}}
+        {{!-- md:px-20 px-8 bg-neutral-100 shadow-md shadow-black/5--}}
+        <nav        
+        class="flex-no-wrap relative flex max-w-screen-xl mx-auto items-center justify-between py-2 lg:flex-wrap lg:justify-start lg:py-4"
         data-te-navbar-ref>
         <div class="flex w-full flex-wrap items-center justify-between px-3">
             {{!-- Hamburger button for mobile view --}}
@@ -50,9 +53,11 @@
             <a
                 class="mb-4 mr-2 mt-3 flex items-center text-neutral-900 hover:text-neutral-900 focus:text-neutral-900   lg:mb-0 lg:mt-0"
                 href="/">
-                <img
+                <img 
+                class="rounded-full"
                 src="/img/project-nexus-logo.jpeg"
-                style="height: 15px"
+                {{!-- style="height: 15px" --}}
+                style="height: 35px"
                 alt=""
                 loading="lazy" />
             </a>
@@ -97,7 +102,7 @@
                 >
                 </li>
             </ul>
-            </div>
+            </div>            
 
             {{!-- Right elements --}}
             <div class="relative flex items-center">
@@ -156,12 +161,17 @@
                 data-te-dropdown-toggle-ref
                 aria-expanded="false">
                 {{!-- User avatar --}}
+                {{#if logged_in}}
                 <img
                     src="https://tecdn.b-cdn.net/img/new/avatars/2.jpg"
+                    {{!-- src="{{}}" --}}
                     class="rounded-full"
-                    style="height: 25px; width: 25px"
+                    style="height: 35px; width: 35px"
                     alt=""
                     loading="lazy" />
+                {{else}}
+                <a href="/login" class="text-neutral-500 hover:text-neutral-700 focus:text-neutral-700 disabled:text-black/30  lg:px-2 [&.active]:text-black/90 ">Log In</a>
+                {{/if}}
                 </a>
                 {{!-- Second dropdown menu --}}
                 <ul
@@ -202,6 +212,7 @@
             </div>
         </div>
         </nav>
+        </div>
     </header>
     <main class="px-8 md:px-20">
         {{{body}}}
