@@ -60,6 +60,8 @@ router.get("/:id", async (req, res) => {
       posts,
       tagName: posts[0].tag_name,
       logged_in: req.session.logged_in,
+      session_name: req.session.name,
+      session_user_id: req.session.user_id,
     });
   } catch (err) {
     // res.status(400).json(err);

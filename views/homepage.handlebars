@@ -173,6 +173,17 @@
         <div class="mb-8 lg:basis-1/3 p-2">
             <div>
                 <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8">
+                    <div>
+                    <figcaption class="flex items-center justify-center space-x-3">
+                    <img class="rounded-full w-12 h-12"
+                        src="{{post.user.user_img}}"
+                        alt="profile picture" />
+                    </figcaption>
+                    <div class="space-y-0.5 font-medium dark:text-white text-center">
+                        <div>{{post.user.name}}</div>
+                        <div class="text-sm text-gray-500 dark:text-gray-400">{{format_date post.date_created}}</div>
+                    </div>
+                </div>
                     <h2 class="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">{{post.post_title}}</h2>                    
                     <p class="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4">{{post.post_body}}</p>
                     <a href="api/tags/{{post.tag_id}}" class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 mb-2">
