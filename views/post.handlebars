@@ -1,12 +1,23 @@
 <section class="max-w-screen-xl mx-auto bg-gray-50 p-12 rounded-3xl my-8 shadow-lg">
     <div class="flex">
-        <div>
-            <figcaption class="flex items-center justify-center space-x-3">
-                <img class="rounded-full w-12 h-12" src="../{{post.user.user_img}}" alt="profile picture" />
-            </figcaption>
-            <div class="space-y-0.5 font-medium dark:text-white text-center">
-                <div>{{post.user.name}}</div>
-                <div class="text-sm text-gray-500 dark:text-gray-400">{{format_date post.date_created}}</div>
+            <div>
+                <figcaption class="flex items-center justify-center space-x-3">
+                    <img class="rounded-full w-16 h-16" src="../../{{post.user.user_img}}" alt="Profile Image">
+                </figcaption>                
+                <div class="text-center">
+                    <span class="text-blue-500">{{post.user.name}} </span>
+                </div>
+                <div class="text-center mt-1">
+                    <span class="text-blue-500">{{format_date post.date_created}}</span> 
+                </div>
+            </div>
+            <div class="ml-6 w-full mb-10">
+                <h2 class="font-bold text-3xl pb-2">      
+                    <a href="/posts/{{post.post_id}}">{{post.post_title}}</a>
+                </h2>
+                <div>
+                    <p class="py-4">{{post.post_body}}</p>
+                </div>
             </div>
         </div>
     <div class="ml-6 w-full mb-10">
