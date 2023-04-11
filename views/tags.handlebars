@@ -25,9 +25,11 @@ Phase 3
                 class="font-bold border border-blue-500 p-2 rounded-lg">
                 {{tag.tag_name}}            
             </a>    
-            <p class="my-2">{{tag.tag_summary}}</p>
-            <hr>
-    </div>
+            <div class="overflow-hidden h-32 text-ellipsis mb-4">
+                <p class="my-8 over">{{tag.tag_summary}}</p>
+            </div>
+        <hr>
+        </div>
     {{/each}}
     </div>
 </section>
