@@ -1,5 +1,5 @@
 
-<section class="bg-white dark:bg-gray-900">
+<section class="bg-white">
     {{!-- carousel --}}
     <div
         id="carouselExampleCaptions"
@@ -142,9 +142,9 @@
     {{!-- Community Tab --}}
 
     <div class="mx-auto max-w-screen-xl lg:py-2">
-        <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 md:p-12 mb-8">
-            <h1 class="text-gray-900 dark:text-white text-3xl md:text-3xl font-extrabold mb-2">Project Nexus Community.</h1>
-            <p class="text-lg font-normal text-gray-500 dark:text-gray-400 mb-6">We're dedicated to bringing you the latest news and information on a wide range of topics, from entertainment and sports to technology and science. With a team of experienced writers and editors, we strive to provide you with accurate and engaging content that keeps you informed and entertained. Our site is easy to navigate, and you can find the latest articles and updates on our homepage. So take a look around and discover all that our website has to offer!</p>
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-8 md:p-12 mb-8">
+            <h1 class="text-gray-900  text-3xl md:text-3xl font-extrabold mb-2">Project Nexus Community.</h1>
+            <p class="text-lg font-normal text-gray-500  mb-6">We're dedicated to bringing you the latest news and information on a wide range of topics, from entertainment and sports to technology and science. With a team of experienced writers and editors, we strive to provide you with accurate and engaging content that keeps you informed and entertained. Our site is easy to navigate, and you can find the latest articles and updates on our homepage. So take a look around and discover all that our website has to offer!</p>
             <div class="flex col-3 mt-8 gap-8">
                 <div>
                     <span class="font-bold text-xl pb-2">Members: </span>{{user_count}} 
@@ -158,7 +158,7 @@
             </div>
         </div>
         {{!-- Top Posts --}}
-        <h2 class="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">Top Posts</h2>
+        <h2 class="text-gray-900  text-3xl font-extrabold mb-2">Top Posts</h2>
         {{#if logged_in}}
         <div style="display: flex; justify-content: flex-end;">
             <a href="/createPost" class="font-bold text-slate-800 hover:text-blue-900 transition duration-300">Ask Question</a>
@@ -172,21 +172,21 @@
         {{#each posts as |post| }}
         <div class="mb- lg:basis-1/3 p-2">
             <div>
-                <div class="bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-8 h-full">
+                <div class="bg-gray-50  border border-gray-200  rounded-lg p-8 h-full">
                     <div>
                     <figcaption class="flex items-center justify-center space-x-3">
                     <img class="rounded-full w-12 h-12"
                         src="{{post.user.user_img}}"
                         alt="profile picture" />
                     </figcaption>
-                    <div class="space-y-0.5 font-medium dark:text-white text-center">
+                    <div class="space-y-0.5 font-medium  text-center">
                         <div>{{post.user.name}}</div>
-                        <div class="text-sm text-gray-500 dark:text-gray-400">{{format_date post.date_created}}</div>
+                        <div class="text-sm text-gray-500 ">{{format_date post.date_created}}</div>
                     </div>
                 </div>
-                    <h2 class="text-gray-900 dark:text-white text-3xl font-extrabold mb-2">{{post.post_title}}</h2>                    
-                    <p class="text-lg font-normal text-gray-500 dark:text-gray-400 mb-4 h-auto">{{post.post_body}}</p>
-                    <a href="api/tags/{{post.tag_id}}" class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 mb-2">
+                    <h2 class="text-gray-900  text-3xl font-extrabold mb-2">{{post.post_title}}</h2>                    
+                    <p class="text-lg font-normal text-gray-500 -gray-400 mb-4 h-auto">{{post.post_body}}</p>
+                    <a href="api/tags/{{post.tag_id}}" class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md  mb-2">
                         <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path clip-rule="evenodd" fill-rule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z"></path>
                         </svg>
@@ -194,7 +194,7 @@
                     </a>
                     <hr>
                     <div class="text-right">
-                        <a href="/posts/{{post.post_id}}" class="text-blue-600 dark:text-blue-500 hover:underline font-medium text-lg inline-flex items-center">Read more
+                        <a href="/posts/{{post.post_id}}" class="text-blue-600  hover:underline font-medium text-lg inline-flex items-center">Read more
                             <svg aria-hidden="true" class="w-4 h-4 ml-2" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                             </svg>

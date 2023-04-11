@@ -17,9 +17,9 @@
             <figcaption class="flex items-center justify-center space-x-3">
                 <img class="rounded-full w-12 h-12" src="{{post.user.user_img}}" alt="profile picture" />
             </figcaption>
-            <div class="space-y-0.5 font-medium dark:text-white text-center">
+            <div class="space-y-0.5 font-medium  text-center">
                 <div>{{post.user.name}}</div>
-                <div class="text-sm text-gray-500 dark:text-gray-400">{{format_date post.date_created}}</div>
+                <div class="text-sm text-gray-500 ">{{format_date post.date_created}}</div>
             </div>
         </div>
         <div class="ml-6 w-full">
@@ -46,7 +46,7 @@
                 {{!-- Tags --}}
                 <div class="flex gap-1">
                     <a href="api/tags/{{post.tag_id}}"
-                        class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md dark:bg-gray-700 dark:text-green-400 mb-2">
+                        class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded-md mb-2">
                         <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                             <path clip-rule="evenodd" fill-rule="evenodd"
