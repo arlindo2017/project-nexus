@@ -10,7 +10,7 @@ router.get("/", async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ["name"],
+          attributes: ["name", "user_img"],
         },
       ],
       attributes: [
@@ -120,14 +120,14 @@ router.get("/posts/:id", async (req, res) => {
       include: [
         {
           model: User,
-          attributes: ["name"],
+          attributes: ["name", "user_img"],
         },
         {
           model: Answer,
           include: [
             {
               model: User,
-              attributes: ["name"],
+              attributes: ["name", "user_img"],
             },
           ],
         },
