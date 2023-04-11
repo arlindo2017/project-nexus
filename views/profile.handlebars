@@ -17,49 +17,44 @@ some ideas
 <section class="max-w-screen-xl mx-auto bg-gray-50 p-12 rounded-3xl my-8 shadow-lg">
     <div class="row">
         <div class="col-md-6">
-            <h1>Welcome, {{name}} {{email}}</h1>
-
+            <div>
+                <img class="rounded-full w-12 h-12" src= {{user_img}} alt="Profile Image" style="min-width:50px; max-width:100px">
+            </div>
+            <h1>Welcome, {{name}} ({{email}})</h1>
             <div class="row"></div>
             <p>User since: {{format_date last_logged_in}}</p>
 
-            <form action="/logout" method="POST">
-                <button type="submit">Log out</button>
-            </form>
+
         </div>
     </div>
-</section>
+
 <br>
+{{!-- <section class="max-w-screen-xl mx-auto bg-gray-50 p-12 rounded-3xl my-8 shadow-lg"> --}}
 {{#each posts as |post| }}
     {{!-- Display POST Title --}}
     <div class="flex">
-        <div>        
-            <div>
-                <img src="./img/profile-placeholder.png" alt="Profile Image" style="min-width:50px; max-width:100px">
-            </div>
+        {{!-- <div>         
             <div class="text-center">
                 <span class="text-blue-500">{{post.user.name}} </span>
             </div>
-            <div class="text-center mt-1">
-                <span class="text-blue-500">{{format_date post.date_created}}</span> 
-            </div>
-        </div>
-        <div class="ml-6 w-full">
+        </div> --}}
+        <div class="col-md-6">
             <div>
-                <h2 class="font-bold text-3xl pb-2">      
+                <h2 class="font text-2xl pb-2">      
                     <a href="/posts/{{post.post_id}}">{{post.post_title}}</a>
                 </h2> 
             </div>
             <div>
                 <p class="py-4">{{post.post_body}}</p>
             </div>
-            <div class="grid grid-cols-5 content-evenly">
+            <div class="grid grid-cols-5 content-evenly w-full">
                 {{!-- Views --}}
                 <div class="flex gap-1">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                         <title>Views</title>
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
+                    </svg> 
                     <span class="text-blue-500">{{post.view_count}}</span> 
                 </div>
                 {{!-- Tags --}}
@@ -119,8 +114,9 @@ some ideas
         </div>  
     </div>
     <hr class="mb-10 mt-4">
+    
     {{/each}}
-
+</section>
 
 {{!-- More info about the user --}}
 
