@@ -29,11 +29,12 @@ Phase 3
                     <h2 class="font-bold text-2xl pb-2">{{tag.tag_name}}</h2>
                 </a>
             </div>
-            <div class="overflow-hidden h-32 text-ellipsis mb-4">
+            {{!-- <div class="overflow-hidden h-32 text-ellipsis mb-4"> --}}
+            <div>
                 {{!-- <a href="/api/tags/{{tag.tag_id}}" class="font-bold border border-blue-500 p-2 rounded-lg"></a>  --}}
-            <p class="my-8 over">{{tag.tag_summary}}</p>
+            <p class="my-8">{{tag.tag_summary}}</p>
             </div>
-            <hr>
+            {{!-- <hr> --}}
         </div>
     {{/each}}
     </div>
