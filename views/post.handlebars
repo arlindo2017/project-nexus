@@ -1,28 +1,26 @@
 <section class="max-w-screen-xl mx-auto bg-gray-50 p-12 rounded-3xl my-8 shadow-lg">
     <div class="flex">
         <div>
-            <div>
-                    <img src="/img/profile-placeholder.png" alt="Profile Image" style="min-width:50px; max-width:100px">
-                </div>
-                <div class="text-center">
-                    <span class="text-blue-500">{{post.user.name}} </span>
-                </div>
-                <div class="text-center mt-1">
-                    <span class="text-blue-500">{{format_date post.date_created}}</span> 
-                </div>
-            </div>
-            <div class="ml-6 w-full mb-10">
-                <h2 class="font-bold text-3xl pb-2">      
-                    <a href="/posts/{{post.post_id}}">{{post.post_title}}</a>
-                </h2>
-                <div>
-                    <p class="py-4">{{post.post_body}}</p>
-                </div>
+            <figcaption class="flex items-center justify-center space-x-3">
+                <img class="rounded-full w-12 h-12" src="../{{post.user.user_img}}" alt="profile picture" />
+            </figcaption>
+            <div class="space-y-0.5 font-medium dark:text-white text-center">
+                <div>{{post.user.name}}</div>
+                <div class="text-sm text-gray-500 dark:text-gray-400">{{format_date post.date_created}}</div>
             </div>
         </div>
-        <br>
-        <hr>
-        <br>
+    <div class="ml-6 w-full mb-10">
+        <h2 class="font-bold text-3xl pb-2">
+            <a href="/posts/{{post.post_id}}">{{post.post_title}}</a>
+        </h2>
+        <div>
+            <p class="py-4">{{post.post_body}}</p>
+        </div>
+    </div>
+    </div>
+    <br>
+    <hr>
+    <br>
     </div>
     <div>
         {{#each post.answers as |answer|}}
@@ -33,10 +31,10 @@
             <div>
                 {{answer.answer_body}}
             </div>
-                {{!-- {{#if logged_in}} --}}
-                {{!-- {{#if (eq answer.user_id ../session.user_id)}} --}}  
-                {{!-- {{/if}} --}}
-                {{!-- {{/if}} --}}
+            {{!-- {{#if logged_in}} --}}
+            {{!-- {{#if (eq answer.user_id ../session.user_id)}} --}}
+            {{!-- {{/if}} --}}
+            {{!-- {{/if}} --}}
             <br>
             <hr>
             <br>
@@ -50,23 +48,21 @@
             </div>
             <div>
                 <div>
-                    <textarea id="answer-body" name="answer-body" placeholder="Add your answer here ..." class="w-full p-8 rounded-lg shadow-md border text-gray-800 border-blue-500 placeholder:text-blue-500"></textarea>
+                    <textarea id="answer-body" name="answer-body" placeholder="Add your answer here ..."
+                        class="w-full p-8 rounded-lg shadow-md border text-gray-800 border-blue-500 placeholder:text-blue-500"></textarea>
                     <input type="hidden" name="post-id" id="post-id" value="{{post.post_id}}">
                 </div>
                 <div class="mt-3" style="display: flex; justify-content: flex-end;">
                     {{#if logged_in}}
-                    <button 
-                        type="submit"
-                        class="p-3 rounded-lg shadow-md text-slate-100 bg-blue-500 hover:bg-blue-400 transition duration-300 ease-in-out"
-                        >Reply
+                    <button type="submit"
+                        class="p-3 rounded-lg shadow-md text-slate-100 bg-blue-500 hover:bg-blue-400 transition duration-300 ease-in-out">Reply
                     </button>
                     {{else}}
-                    <a href="/api/users/login" class="font-bold text-slate-800 hover:text-blue-900 transition duration-300">Sign In</a>
+                    <a href="/api/users/login"
+                        class="font-bold text-slate-800 hover:text-blue-900 transition duration-300">Sign In</a>
                     {{/if}}
                 </div>
             </div>
         </form>
     </div>
 </section>
-
-
