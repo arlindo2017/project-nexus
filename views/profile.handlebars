@@ -21,10 +21,7 @@ some ideas
                 <img class="rounded-full w-12 h-12" src= {{user_img}} alt="Profile Image" style="min-width:50px; max-width:100px">
             </div>
             <h1>Welcome, {{name}} ({{email}})</h1>
-            <div class="row"></div>
             <p>User since: {{format_date last_logged_in}}</p>
-
-
         </div>
     </div>
 
@@ -82,7 +79,7 @@ some ideas
                     <span class="text-blue-500">{{post.flag_count}}</span> 
                 </div>
                 {{!-- Delete --}}
-                {{#if (eq post.user_id ../session_user_id)}}  
+                {{#if (eq post.user_id user_id)}}  
                     <div class="flex gap-1 hover:text-red-500">
                         <button type="click" class="post-btn-delete" data-post-id="{{post.post_id}}">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
