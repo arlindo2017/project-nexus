@@ -166,6 +166,7 @@ router.get("/profile", withAuth, async (req, res) => {
       attributes: { exclude: ["password"] },
       include: [{ model: Post,
         attributes:[
+          "post_id",
           "post_title",
           "post_body",
           "view_count",
