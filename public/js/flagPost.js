@@ -5,7 +5,7 @@ flagPostBtnEl.forEach((btn) => {
     const postId = btn.dataset.postId;
     try {
       console.log(postId);
-      await fetch(`api/posts/flag/${postId}`, {
+      await fetch(`/api/posts/flag/${postId}`, {
         method: "POST",
       });
       // Reload page after deleting answer.

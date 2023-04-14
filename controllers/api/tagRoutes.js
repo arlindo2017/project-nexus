@@ -38,16 +38,17 @@ router.get("/:id", async (req, res) => {
         [
           sequelize.literal(
             `(SELECT tag_name FROM tag WHERE tag_id = ${req.params.id})`
-          ),
-          "tag_name",
-        ],
-        [
+            ),
+            "tag_name",
+          ],
+          [
           sequelize.literal(
             `(SELECT COUNT(*) FROM answer WHERE answer.post_id = post.post_id)`
-          ),
-          "answer_count",
-        ],
-        "flag_count",
+            ),
+            "answer_count",
+          ],          
+          "flag_count",
+          "user_id",
       ],
       where: {
         tag_id: req.params.id,
@@ -55,6 +56,8 @@ router.get("/:id", async (req, res) => {
     });
 
     const posts = postData.map((post) => post.get({ plain: true }));
+    console.log("Session user id:", req.session)
+
     // res.status(200).json(posts);
     res.render("tagPosts", {
       posts,
