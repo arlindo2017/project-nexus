@@ -164,12 +164,32 @@ router.get("/profile", withAuth, async (req, res) => {
     const userData = await User.findByPk(req.session.user_id, {
       //req.session.user_id
       attributes: { exclude: ["password"] },
-      include: [{ model: Post }],
+      include: [{ model: Post,
+        attributes:[
+          "post_title",
+          "post_body",
+          "view_count",
+          "flag_count",
+          [
+            sequelize.literal(
+              `(SELECT tag_name FROM tag WHERE tag_id = posts.tag_id)`
+            ),
+            "tag_name",
+          ],
+          [
+            sequelize.literal(
+              `(SELECT COUNT(*) FROM answer WHERE answer.post_id = posts.post_id)`
+            ),
+            "answer_count",
+          ],
+        ], 
+      },
+    ],
     });
 
     const user = userData.get({ plain: true });
 
-    //res.status(200).json(user);
+    // res.status(200).json(user);
 
     res.render("profile", {
       ...user,
@@ -213,7 +233,6 @@ router.get("/about", async (req, res) => {
   try {
     res.render("about", {
       logged_in: req.session.logged_in,
-
       name: req.session.name,
       user_id: req.session.user_id,
     });
